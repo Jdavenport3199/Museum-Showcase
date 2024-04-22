@@ -14,18 +14,13 @@ export default function Showcase2() {
         <Scene2 isHovered={isHovered} setIsHovered={setIsHovered} />
       </div>
 
-      <span className="instructions">
-        <h2>Controls</h2>
-        <br />
+      <div className="instructions">
+        <span>Controls</span>
         <ul>
-          <li>
-            <b>Left Click:</b> Rotate
-          </li>
-          <li>
-            <b>Double Click:</b> Toggle Text
-          </li>
+          <li>Left Click: Rotate</li>
+          <li>Double Click: Toggle Text</li>
         </ul>
-      </span>
+      </div>
 
       {isHovered && (
         <div className="container-holder">

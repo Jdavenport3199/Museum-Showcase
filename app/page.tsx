@@ -20,15 +20,12 @@ export default function Home() {
         />
       </div>
 
-      <span className="instructions">
-        <h2>Controls</h2>
-        <br />
+      <div className="instructions">
+        <span>Controls</span>
         <ul>
-          <li>
-            <b>Scroll Wheel:</b> Rotate & Reveal Text
-          </li>
+          <li>Scroll Wheel: Rotate & Reveal Text</li>
         </ul>
-      </span>
+      </div>
 
       <div className="container-holder">
         <div className="container">

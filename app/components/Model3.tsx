@@ -34,53 +34,72 @@ const Model3: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
 
   useFrame(() => {
     if (mesh.current) {
-      if ((mesh.current as any).rotation.y < 1) {
+      if ((mesh.current as any).rotation.y < Math.PI / 3) {
         setTest1(false);
         setTest2(false);
       } else if (
-        (mesh.current as any).rotation.y > 1 &&
-        (mesh.current as any).rotation.y < 4
+        (mesh.current as any).rotation.y >= Math.PI / 3 &&
+        (mesh.current as any).rotation.y < Math.PI / 0.5
       ) {
         setTest1(true);
         setTest2(false);
-      } else {
+      } else if (
+        (mesh.current as any).rotation.y >= Math.PI / 0.5 &&
+        (mesh.current as any).rotation.y < Math.PI / 0.25
+      ) {
         setTest1(false);
         setTest2(true);
+      } else if ((mesh.current as any).rotation.y >= Math.PI / 0.25) {
+        setTest1(false);
+        setTest2(false);
       }
     }
   });
 
   useGSAP(() => {
     (tl.current as any) = gsap.timeline({
-      // ease: "power2.inOut",
+      ease: "back.inOut",
       scrollTrigger: {
         trigger: ".main",
         start: "top top",
-        end: "+=250%",
+        end: "+=600%",
         scrub: true,
         pin: true,
       },
     });
 
-    (tl.current as any).to(
-      (mesh.current as any).rotation,
-      {
-        y: 6.25,
-        x: 0,
+    (tl.current as any)
+      .to(
+        (mesh.current as any).rotation,
+        {
+          y: Math.PI / 3,
+          x: 0,
+          z: 0,
+          ease: "power2.inOut",
+        },
+        "start"
+      )
+      .to((mesh.current as any).rotation, {
+        y: Math.PI / 0.5,
+        x: 0.25,
         z: 0,
-      },
-      "start"
-    );
-    // .to(
-    //   (mesh.current as any).rotation,
-    //   {
-    //     y: 6.25,
-    //     x: 0,
-    //     z: 0,
-    //   },
-    //   "end"
-    // );
+        ease: "power2.inOut",
+      })
+      .to(
+        (mesh.current as any).rotation,
+        {
+          y: Math.PI / 0.25,
+          x: -0.25,
+          z: -0.15,
+          ease: "power2.inOut",
+        },
+        "end"
+      );
   }, []);
+
+  useEffect(() => {
+    console.log((mesh.current as any).rotation.y);
+  });
 
   return (
     <group scale={[scale, scale, scale]} dispose={null} rotation={[0, 2.25, 0]}>

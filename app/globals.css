@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 @media (min-width: 1px) {
   ::-webkit-scrollbar {
@@ -15,23 +15,17 @@
     width: 100%;
     min-height: 100vh;
     position: relative;
-    /* background:
+    background:
       linear-gradient(45deg, transparent 0%, transparent 57%, #03045e 100%),
       linear-gradient(-45deg, #023e8a 0%, #0077b6 0.3%, #0096c7 112%, transparent 11%),
-      linear-gradient(-90deg, #00b4d8 100%, #48cae4 65%, transparent 20%); */
-    background:
-      linear-gradient(45deg, transparent 0%, transparent 57%, #ced4da 100%),
-      linear-gradient(-45deg, #adb5bd 0%, #f5f5f5 0.3%, #dee2e6 112%, transparent 11%),
-      linear-gradient(-90deg, #e9ecef 100%, #f8f9fa 65%, transparent 20%);
-
-    background: white;
+      linear-gradient(-90deg, #00b4d8 100%, #48cae4 65%, transparent 20%);
   }
 
   * {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    color: #070707;
+    color: whitesmoke;
     line-height: 1.4;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -39,9 +33,10 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: "Courier Prime", monospace;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-size: clamp(14px, 2vw, 16px);
   }
 
   a,
@@ -61,44 +56,31 @@
     transition: 150ms linear;
   }
 
+  ul {
+    margin-top: 1rem;
+  }
+
   h2 {
-    font-size: clamp(20px, 4vw, 24px);
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: 600;
   }
 
-  p,
-  .italics {
-    font-size: clamp(12px, 2vw, 14px);
-  }
-
-  .italics {
-    font-style: italic;
+  span {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 600;
   }
 
   .nav {
     position: fixed;
-    top: 4rem;
+    top: 2rem;
     display: flex;
     justify-content: left;
-    flex-direction: column;
-    gap: 1rem;
+    /* flex-direction: column; */
+    gap: 4rem;
     left: 4rem;
     z-index: 3;
     width: fit-content;
-    font-size: clamp(12px, 2vw, 14px);
-    font-family: "Courier Prime", monospace;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  .projects-list {
-    width: fit-content;
-
-    .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      margin-left: 1rem;
-    }
+    font-weight: 600;
   }
 
   .container-holder {
@@ -134,30 +116,6 @@
     }
   }
 
-  .hover {
-    position: absolute;
-    cursor: pointer;
-    font-size: 48px;
-    border-radius: 100rem;
-    line-height: 0;
-    right: 5%;
-    top: 10%;
-  }
-
-  #fade {
-    animation: fadeIn 1s forwards ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-
   .controls {
     position: fixed;
     display: flex;
@@ -173,12 +131,13 @@
     height: 4rem;
     aspect-ratio: 1;
     border-radius: 100rem;
-    border: 1px solid #00000010;
-    background: whitesmoke;
+    border: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    font-size: 20px;
+    font-weight: 800;
+    backdrop-filter: blur(4px);
   }
 }
 

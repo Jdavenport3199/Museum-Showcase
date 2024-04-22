@@ -7,18 +7,30 @@ import { gsap } from "gsap";
 interface Props {
   test1: boolean;
   setTest1: React.Dispatch<React.SetStateAction<boolean>>;
+  test1Text: boolean;
+  setTest1Text: React.Dispatch<React.SetStateAction<boolean>>;
   test2: boolean;
   setTest2: React.Dispatch<React.SetStateAction<boolean>>;
+  test2Text: boolean;
+  setTest2Text: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Model4: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
+const Model4: React.FC<Props> = ({
+  test1,
+  setTest1,
+  test1Text,
+  setTest1Text,
+  test2,
+  setTest2,
+  test2Text,
+  setTest2Text,
+}) => {
   const { viewport } = useThree();
   const { nodes } = useGLTF("/Statue.glb");
   const mesh = useRef(null);
   const scale = viewport.width / 40;
   const tl1 = useRef(null);
   const tl2 = useRef(null);
-  const tl3 = useRef(null);
   const materialProps = useControls({
     thickness: { value: 3, min: 0, max: 3, step: 0.05 },
     roughness: { value: 0.2, min: 0, max: 1, step: 0.1 },
@@ -33,7 +45,6 @@ const Model4: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
   useLayoutEffect(() => {
     (tl1.current as any) = gsap.timeline({ paused: true });
     (tl2.current as any) = gsap.timeline({ paused: true });
-    (tl3.current as any) = gsap.timeline({ paused: true });
 
     (tl1.current as any).to(
       (mesh.current as any).rotation,
@@ -85,22 +96,38 @@ const Model4: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
   }, []);
 
   const handleLogic = () => {
-    if (test1 === true) {
-      (tl1.current as any).play();
-    } else if (
-      (test1 === false && (tl2.current as any).time() === 0) ||
-      (tl2.current as any).totalDuration()
+    if (
+      test1 &&
+      !test2 &&
+      ((tl2.current as any).totalProgress() == 1 ||
+        (tl2.current as any).totalProgress() == 0)
     ) {
-      (tl1.current as any).reverse();
+      (tl1.current as any).play();
+      setTest1Text(true);
+      setTest2Text(false);
     }
 
-    if (test2 === true) {
-      (tl2.current as any).play();
-    } else if (
-      (test2 === false && (tl1.current as any).time() === 0) ||
-      (tl1.current as any).totalDuration()
+    if (!test1 && !test2 && (tl1.current as any).totalProgress() == 1) {
+      (tl1.current as any).reverse();
+      setTest1Text(false);
+      setTest2Text(false);
+    }
+
+    if (
+      !test1 &&
+      test2 &&
+      ((tl1.current as any).totalProgress() == 1 ||
+        (tl1.current as any).totalProgress() == 0)
     ) {
+      (tl2.current as any).play();
+      setTest1Text(false);
+      setTest2Text(true);
+    }
+
+    if (!test1 && !test2 && (tl2.current as any).totalProgress() == 1) {
       (tl2.current as any).reverse();
+      setTest1Text(false);
+      setTest2Text(false);
     }
   };
 

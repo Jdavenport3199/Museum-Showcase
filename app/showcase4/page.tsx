@@ -10,15 +10,15 @@ export default function Showcase4() {
   const [test2Text, setTest2Text] = useState(false);
 
   const handleTest1 = () => {
-    setTest1(!test1);
-    setTest1Text(!test1);
-    setTest2Text(false);
+    if (!test2) {
+      setTest1(!test1);
+    }
   };
 
   const handleTest2 = () => {
-    setTest2(!test2);
-    setTest1Text(false);
-    setTest2Text(!test2);
+    if (!test1) {
+      setTest2(!test2);
+    }
   };
 
   return (
@@ -29,26 +29,45 @@ export default function Showcase4() {
         <Scene
           test1={test1}
           setTest1={setTest1}
+          test1Text={test1Text}
+          setTest1Text={setTest1Text}
           test2={test2}
           setTest2={setTest2}
+          test2Text={test2Text}
+          setTest2Text={setTest2Text}
         />
       </div>
 
-      <span className="instructions">
-        <h2>Controls</h2>
-        <br />
+      <div className="instructions">
+        <span>Controls</span>
         <ul>
-          <li>
-            <b>Scroll Wheel:</b> Rotate & Reveal Text
-          </li>
+          <li>Button: Toggle Animation & Reveal Text</li>
         </ul>
-      </span>
+      </div>
 
       <span className="controls">
-        <button className="control-btn" onClick={() => handleTest1()}>
+        <button
+          className="control-btn"
+          onClick={() => handleTest1()}
+          style={{
+            background: test1 ? "whitesmoke" : "#f5f5f580",
+            color: test1 ? "#2667ff" : "whitesmoke",
+            opacity: test2 ? "0.4" : "1",
+            cursor: test2 ? "auto" : "pointer",
+          }}
+        >
           1
         </button>
-        <button className="control-btn" onClick={() => handleTest2()}>
+        <button
+          className="control-btn"
+          onClick={() => handleTest2()}
+          style={{
+            background: test2 ? "whitesmoke" : "#f5f5f580",
+            color: test2 ? "#2667ff" : "whitesmoke",
+            opacity: test1 ? "0.4" : "1",
+            cursor: test1 ? "auto" : "pointer",
+          }}
+        >
           2
         </button>
       </span>
