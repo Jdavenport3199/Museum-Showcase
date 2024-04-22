@@ -14,10 +14,6 @@ export default function Showcase2() {
         <Scene2 isHovered={isHovered} setIsHovered={setIsHovered} />
       </div>
 
-      {/* <span className="hover">
-        <i className="fa-solid fa-circle-info"></i>
-      </span> */}
-
       <span className="instructions">
         <h2>Controls</h2>
         <br />
