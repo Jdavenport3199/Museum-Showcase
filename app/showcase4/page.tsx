@@ -2,6 +2,7 @@
 import Nav from "../components/Nav";
 import Scene from "../components/Scene4";
 import { useState } from "react";
+import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function Showcase4() {
   const [test1, setTest1] = useState(false);
@@ -22,6 +23,7 @@ export default function Showcase4() {
   };
 
   return (
+    <ReactLenis root>
     <main>
       <Nav />
 
@@ -109,5 +111,6 @@ export default function Showcase4() {
         </div>
       </div>
     </main>
+    </ReactLenis>
   );
 }
