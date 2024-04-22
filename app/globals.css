@@ -13,7 +13,7 @@
   body,
   main {
     width: 100%;
-    min-height: 100vh;
+    max-height: 100vh;
     position: relative;
     background:
       linear-gradient(45deg, transparent 0%, transparent 57%, #03045e 100%),
@@ -36,7 +36,7 @@
     font-family: "Inter", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: clamp(14px, 2vw, 16px);
+    font-size: clamp(12px, 2vw, 16px);
   }
 
   a,
@@ -94,7 +94,7 @@
 
   .container {
     width: 90%;
-    position: fixed;
+    margin-bottom: 4rem;
   }
 
   .background {
@@ -122,7 +122,7 @@
     display: flex;
     justify-content: left;
     flex-direction: column;
-    width: 100%;
+    width: fit-content;
     left: 2rem;
     bottom: 60%;
     z-index: 3;
@@ -163,6 +163,7 @@
   }
 
   .controls {
+    width: 100%;
     justify-content: center;
     flex-direction: row;
     left: 0rem;
@@ -170,13 +171,14 @@
   }
 
   .container-holder {
-    justify-content: center;
+    width: 90%;
+    justify-content: right;
     align-items: center;
+    margin-bottom: 8rem;
     height: 100vh;
   }
 
   .container {
     width: 25%;
-    right: 10%;
   }
 }
