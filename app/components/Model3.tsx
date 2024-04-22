@@ -39,19 +39,15 @@ const Model3: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
         setTest2(false);
       } else if (
         (mesh.current as any).rotation.y >= Math.PI / 3 &&
-        (mesh.current as any).rotation.y < Math.PI / 0.5
+        (mesh.current as any).rotation.y < Math.PI / 0.8
       ) {
         setTest1(true);
         setTest2(false);
       } else if (
-        (mesh.current as any).rotation.y >= Math.PI / 0.5 &&
-        (mesh.current as any).rotation.y < Math.PI / 0.25
+        (mesh.current as any).rotation.y >= Math.PI / 0.8
       ) {
         setTest1(false);
         setTest2(true);
-      } else if ((mesh.current as any).rotation.y >= Math.PI / 0.25) {
-        setTest1(false);
-        setTest2(false);
       }
     }
   });
@@ -85,16 +81,16 @@ const Model3: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
         z: 0,
         ease: "power2.inOut",
       })
-      .to(
-        (mesh.current as any).rotation,
-        {
-          y: Math.PI / 0.25,
-          x: -0.25,
-          z: -0.15,
-          ease: "power2.inOut",
-        },
-        "end"
-      );
+      // .to(
+      //   (mesh.current as any).rotation,
+      //   {
+      //     y: Math.PI / 0.25,
+      //     x: -0.25,
+      //     z: -0.15,
+      //     ease: "power2.inOut",
+      //   },
+      //   "end"
+      // );
   }, []);
 
   useEffect(() => {
