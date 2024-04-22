@@ -1,6 +1,6 @@
 import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useControls } from "leva";
 
 interface Props {
@@ -12,7 +12,7 @@ const Model2: React.FC<Props> = ({ isHovered, setIsHovered }) => {
   const { viewport } = useThree();
   const { nodes } = useGLTF("/Statue.glb");
   const mesh = useRef(null);
-  const scale = viewport.width / 40;
+  const [scale, setScale] = useState<number>(0);
   const materialProps = useControls({
     thickness: { value: 3, min: 0, max: 3, step: 0.05 },
     roughness: { value: 0.2, min: 0, max: 1, step: 0.1 },
@@ -23,6 +23,14 @@ const Model2: React.FC<Props> = ({ isHovered, setIsHovered }) => {
     transparent: { value: false },
     opacity: { value: 0, min: 0, max: 1, step: 0.05 },
   });
+
+  useEffect(() => {
+    if (viewport.width > 14) {
+      setScale(viewport.width / 40);
+    } else if (viewport.width < 6) {
+      setScale(viewport.width / 15);
+    }
+  }, [viewport.width]);
 
   return (
     <group

@@ -1,6 +1,6 @@
 import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useControls } from "leva";
 import { gsap } from "gsap";
 
@@ -15,7 +15,7 @@ const Model: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
   const { viewport } = useThree();
   const { nodes } = useGLTF("/Statue.glb");
   const mesh = useRef(null);
-  const scale = viewport.width / 40;
+  const [scale, setScale] = useState<number>(0);
   const tl1 = useRef(null);
   const tl2 = useRef(null);
   const tl3 = useRef(null);
@@ -167,6 +167,14 @@ const Model: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
       window.removeEventListener("touchstart", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (viewport.width > 14) {
+      setScale(viewport.width / 40);
+    } else if (viewport.width < 6) {
+      setScale(viewport.width / 15);
+    }
+  }, [viewport.width]);
 
   // useEffect(() => {
   //   window.addEventListener("wheel", handleScroll);

@@ -1,6 +1,6 @@
 import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useControls } from "leva";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -19,7 +19,7 @@ const Model3: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
   const { viewport } = useThree();
   const { nodes } = useGLTF("/Statue.glb");
   const mesh = useRef(null);
-  const scale = viewport.width / 40;
+  const [scale, setScale] = useState<number>(0);
   const tl = useRef(null);
   const materialProps = useControls({
     thickness: { value: 3, min: 0, max: 3, step: 0.05 },
@@ -98,8 +98,12 @@ const Model3: React.FC<Props> = ({ test1, setTest1, test2, setTest2 }) => {
   }, []);
 
   useEffect(() => {
-    console.log((mesh.current as any).rotation.y);
-  });
+    if (viewport.width > 14) {
+      setScale(viewport.width / 40);
+    } else if (viewport.width < 6) {
+      setScale(viewport.width / 15);
+    }
+  }, [viewport.width]);
 
   return (
     <group scale={[scale, scale, scale]} dispose={null} rotation={[0, 2.25, 0]}>

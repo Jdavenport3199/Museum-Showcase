@@ -1,6 +1,6 @@
 import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useControls } from "leva";
 import { gsap } from "gsap";
 
@@ -28,7 +28,7 @@ const Model4: React.FC<Props> = ({
   const { viewport } = useThree();
   const { nodes } = useGLTF("/Statue.glb");
   const mesh = useRef(null);
-  const scale = viewport.width / 40;
+  const [scale, setScale] = useState<number>(0);
   const tl1 = useRef(null);
   const tl2 = useRef(null);
   const materialProps = useControls({
@@ -130,6 +130,14 @@ const Model4: React.FC<Props> = ({
       setTest2Text(false);
     }
   };
+
+  useEffect(() => {
+    if (viewport.width > 14) {
+      setScale(viewport.width / 40);
+    } else if (viewport.width < 6) {
+      setScale(viewport.width / 15);
+    }
+  }, [viewport.width]);
 
   useFrame(() => {
     handleLogic();

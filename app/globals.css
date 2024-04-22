@@ -57,7 +57,7 @@
   }
 
   ul {
-    margin-top: 1rem;
+    margin-top: 0.4rem;
   }
 
   h2 {
@@ -75,9 +75,9 @@
     top: 2rem;
     display: flex;
     justify-content: left;
-    /* flex-direction: column; */
-    gap: 4rem;
-    left: 4rem;
+    flex-direction: column;
+    gap: 0.4rem;
+    left: 2rem;
     z-index: 3;
     width: fit-content;
     font-weight: 600;
@@ -106,8 +106,9 @@
 
   .instructions {
     position: fixed;
-    left: 4rem;
-    bottom: 4rem;
+    top: 2rem;
+    right: 2rem;
+    text-align: right;
 
     li {
       all: unset;
@@ -119,9 +120,11 @@
   .controls {
     position: fixed;
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    flex-direction: column;
     width: 100%;
-    bottom: 4rem;
+    left: 2rem;
+    bottom: 60%;
     z-index: 3;
     gap: 0.4rem;
   }
@@ -142,6 +145,30 @@
 }
 
 @media (min-width: 999px) {
+  .nav {
+    gap: 1rem;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  ul {
+    margin-top: 1rem;
+  }
+
+  .instructions {
+    top: auto;
+    left: 4rem;
+    bottom: 4rem;
+    text-align: left;
+  }
+
+  .controls {
+    justify-content: center;
+    flex-direction: row;
+    left: 0rem;
+    bottom: 4rem;
+  }
+
   .container-holder {
     justify-content: center;
     align-items: center;
