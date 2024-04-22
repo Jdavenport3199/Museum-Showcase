@@ -98,7 +98,7 @@
   }
 
   .background {
-    position: fixed;
+    position: absolute;
     height: 100vh;
     width: 100%;
     z-index: 2;
@@ -109,6 +109,7 @@
     top: 2rem;
     right: 2rem;
     text-align: right;
+    width: fit-content;
 
     li {
       all: unset;
@@ -174,11 +175,11 @@
     width: 90%;
     justify-content: right;
     align-items: center;
-    margin-bottom: 8rem;
     height: 100vh;
   }
 
   .container {
     width: 25%;
+    margin-bottom: 0rem;
   }
 }
